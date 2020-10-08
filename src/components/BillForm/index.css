@@ -1,0 +1,37 @@
+.bill-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  padding: 8px 12px;
+  min-width: 200px;
+  margin-top: 8px;
+}
+.input-field-wrapper {
+  margin: 12px 0px;
+  padding: 8px 0px;
+  display: flex;
+  flex-direction: column
+}
+.bill-form button{
+  padding: 12px;
+  margin: 8px 0px;
+  border-radius: 4px;
+  border-width: 0px;
+  outline: none;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.submit-btn {
+  background: blue;
+  color: white;
+}
+.cancel-btn {
+  background: white;
+  border-width: 1px;
+  border: 1px solid #cccccc75;
+  color: red;
+}

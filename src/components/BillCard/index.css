@@ -1,0 +1,11 @@
+.bill-item {
+  padding: 30px;
+  box-shadow: rgba(31, 131, 216, 0.55) 0px 4px 12px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+.row-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

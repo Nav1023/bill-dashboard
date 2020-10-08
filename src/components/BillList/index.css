@@ -1,0 +1,46 @@
+.add-btn {
+  border-color: blue;
+  border-radius: 0;
+  color: blue;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+
+}
+
+.add-btn:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: purple;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+
+.add-btn:hover {
+  color: #fff;
+}
+.add-btn:hover:after {
+  width: 100%;
+}
+
+.bill-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0px;
+}
+.bill-list-wrapper {
+  padding: 20px;
+}
