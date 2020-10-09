@@ -40,7 +40,7 @@ const BillList = (props) => {
           billList.map(bill => <BillCard data={bill} />)
           : <p>No Bills</p>}
       </div>
-      <Modal isOpen={isModalVisible}><BillForm type={'create'} data={billList} toggleModal={toggleModal} submitHandle={addBill}/></Modal>
+      <Modal isOpen={isModalVisible}><BillForm type={'create'} data={billList} toggleModal={toggleModal} submitHandle={props.addBill}/></Modal>
     </div>
   )
 }

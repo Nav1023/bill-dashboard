@@ -51,22 +51,27 @@ let initialState = {
 
 
 const BillReducer = (state = initialState, action) => {
-
+console.log("payload", action.payload);
+const {
+  payload
+} = action;
   switch (action.type) {
-    case ACTION_TYPES.ADD_BILL_SUCCESS:
+    case ACTION_TYPES.ADD_BILL:
       return {
         ...state,
-        billData: action.payload,
+        billData: state.billData.push(payload),
       };
-    case ACTION_TYPES.EDIT_BILL_SUCCESS:
+    case ACTION_TYPES.EDIT_BILL:
       return {
         ...state,
-        billData: action.payload,
+        billData: state.billData.map((data) => {
+          return data.id === payload.id ?  payload: data;
+        }),
       };
-    case ACTION_TYPES.DELETE_BILL_SUCCESS:
+    case ACTION_TYPES.DELETE_BILL:
       return {
         ...state,
-        billData: action.payload,
+        billData: state.billData.filter((data) => data.id !== payload),
       };
     default:
       return state;

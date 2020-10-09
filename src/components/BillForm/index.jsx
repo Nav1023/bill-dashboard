@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import moment from 'moment';
+import * as uuid from 'uuid';
 import './index.css';
 
 export default ({ type, data, toggleModal, submitHandle}) => {
@@ -15,7 +17,12 @@ export default ({ type, data, toggleModal, submitHandle}) => {
   const handleBillSubmit = (event) => {
     event.preventDefault();
     console.log(state);
-    submitHandle(state, data);
+    const data = { 
+        ...state,
+        id: uuid.v4(),
+        date: moment(new Date()).format('DD-MM-YYYY')
+    };
+    submitHandle(data);
   }
 
   return (
