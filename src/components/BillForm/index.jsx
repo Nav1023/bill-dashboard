@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './index.css';
 
-export default ({ type, data, toggleModal}) => {
+export default ({ type, data, toggleModal, submitHandle}) => {
   const [state, setstate] = useState({ amount: '', category: '', description: ''});
 
   const handleChange = event => {
@@ -15,6 +15,7 @@ export default ({ type, data, toggleModal}) => {
   const handleBillSubmit = (event) => {
     event.preventDefault();
     console.log(state);
+    submitHandle(state, data);
   }
 
   return (

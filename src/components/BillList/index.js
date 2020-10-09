@@ -1,64 +1,25 @@
 import React, { Component, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import {
+  bindActionCreators
+} from 'redux';
+import { addBill, editBill, deleteBill} from '../../redux/actions/BillActions';
 import BillCard from '../BillCard';
 import Modal from '../Modal';
 import './index.css';
 import BillForm from '../BillForm';
-const data = [
-  {
-    "id": 1,
-    "description": "Dominoes",
-    "category": "FoodNDining",
-    "amount": "430",
-    "date": "01-02-2020"
-  },
-  {
-    "id": 2,
-    "description": "Car wash",
-    "category": "utility",
-    "amount": "500",
-    "date": "01-06-2020"
-  },
-  {
-    "id": 3,
-    "description": "Amazon",
-    "category": "shopping",
-    "amount": "2030",
-    "date": "01-07-2020"
-  },
-  {
-    "id": 4,
-    "description": "House rent",
-    "category": "Food & Dining",
-    "amount": "35900",
-    "date": "01-03-2020"
-  },
-  {
-    "id": 5,
-    "description": "Tuition", "category": "education", "amount": "2200",
-    "date": "01-12-2020"
-  },
-  {
-    "id": 6,
-    "description": "Laundry", "category": "Personal Care", "amount": "320",
-    "date": "01-14-2020"
-  },
-  {
-    "id": 7,
-    "description": "Vacation", "category": "Travel",
-    "amount": "3430",
-    "date": "01-18-2020"
-  }
-];
 
-export default () => {
-
-  const [billList, setBillList] = useState(data);
+const BillList = (props) => {
+   const {
+    billData,
+    } = props;
+  const [billList, setBillList] = useState(billData);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const categoryList = billList.map(bill => bill.category).filter((x, i, a) => a.indexOf(x) === i);
 
   console.log('categoryList', categoryList);
+  console.log('props', props);
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -79,21 +40,27 @@ export default () => {
           billList.map(bill => <BillCard data={bill} />)
           : <p>No Bills</p>}
       </div>
-      <Modal isOpen={isModalVisible}><BillForm type={'create'} data={null} toggleModal={toggleModal}/></Modal>
+      <Modal isOpen={isModalVisible}><BillForm type={'create'} data={billList} toggleModal={toggleModal} submitHandle={addBill}/></Modal>
     </div>
   )
 }
 
-// index.propTypes = {
-//   prop: PropTypes
-// }
+BillList.propTypes = {
+  props: PropTypes
+}
 
-// const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  return{
+      billData: state.BillState.billData
+  };
+}
 
-// })
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+      addBill,
+      editBill,
+      deleteBill,
+  }, dispatch);
+}
 
-// const mapDispatchToProps = {
-
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(index)
+export default connect(mapStateToProps, mapDispatchToProps)(BillList);
