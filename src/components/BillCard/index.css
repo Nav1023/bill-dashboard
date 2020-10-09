@@ -30,3 +30,11 @@
   border: 1px solid #cccccc75;
   color: red;
 }
+.bill-amount, .bill-date, .bill-category, .bill-description {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 8px 0px;
+}
+.bill-amount {
+  font-weight: bold;
+}
