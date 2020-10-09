@@ -33,7 +33,7 @@ let initialState = {
     {
       "id": 5,
       "description": "Tuition", "category": "education", "amount": "2200",
-      "date": "01-12-2020"
+      "date": "01-12-2021"
     },
     {
       "id": 6,
@@ -44,7 +44,7 @@ let initialState = {
       "id": 7,
       "description": "Vacation", "category": "Travel",
       "amount": "3430",
-      "date": "01-18-2020"
+      "date": "02-18-2020"
     }
   ],
 };
