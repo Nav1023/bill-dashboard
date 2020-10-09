@@ -9,3 +9,24 @@
   justify-content: space-between;
   align-items: center;
 }
+.bill-item button{
+  padding: 12px;
+  margin: 8px 0px;
+  border-radius: 4px;
+  border-width: 0px;
+  outline: none;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.edit-btn {
+  background: blue;
+  color: white;
+}
+.delete-btn {
+  background: white;
+  border-width: 1px;
+  border: 1px solid #cccccc75;
+  color: red;
+}

@@ -3,9 +3,10 @@ import moment from 'moment';
 import * as uuid from 'uuid';
 import './index.css';
 
-export default ({ type, data, toggleModal, submitHandle}) => {
-  const [state, setstate] = useState({ amount: '', category: '', description: ''});
+export default ({ type, data, toggleModal, addBill, editBill}) => {
+  const [state, setstate] = useState({ amount: data.amount, category: data.category, description: data.description, id: data.id});
 
+  console.log("data", data);
   const handleChange = event => {
     event.persist();
     setstate(prevState => ({
@@ -16,13 +17,22 @@ export default ({ type, data, toggleModal, submitHandle}) => {
 
   const handleBillSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
-    const data = { 
-        ...state,
-        id: uuid.v4(),
-        date: moment(new Date()).format('DD-MM-YYYY')
-    };
-    submitHandle(data);
+    console.log('state', state);
+    if(type === 'create'){
+      const bill = { 
+          ...state,
+          id: uuid.v4(),
+          date: moment(new Date()).format('DD-MM-YYYY')
+      };
+      addBill(bill);
+    }
+   else{
+        const bill = { 
+          ...state,
+          date: moment(new Date()).format('DD-MM-YYYY')
+      };
+      editBill(bill);
+    }
   }
 
   return (
@@ -30,15 +40,15 @@ export default ({ type, data, toggleModal, submitHandle}) => {
    <p className='form-heading'>{`${type === 'create'? 'Add' : 'Edit'} Form`}</p>
       <div className="input-field-wrapper">
     <label>Amount: </label>
-      <input onChange={handleChange} name='amount' className='input-field' type='number' placeholder='Enter Amount' />
+      <input onChange={handleChange} value={state.amount} name='amount' className='input-field' type='number' placeholder='Enter Amount' />
     </div>
       <div className="input-field-wrapper">
     <label>Category: </label>
-      <input onChange={handleChange} name='category' className='input-field' type='text' placeholder='Enter Category' />
+      <input onChange={handleChange} value={state.category} name='category' className='input-field' type='text' placeholder='Enter Category' />
     </div>
       <div className="input-field-wrapper">
     <label>Description: </label>
-      <input onChange={handleChange} name='description' className='input-field' type='text' placeholder='Enter Description' />
+      <input onChange={handleChange} value={state.description} name='description' className='input-field' type='text' placeholder='Enter Description' />
     </div>
     <button type='submit' className='submit-btn'>Save</button>
     <button className="cancel-btn" onClick={toggleModal}>Cancel</button>

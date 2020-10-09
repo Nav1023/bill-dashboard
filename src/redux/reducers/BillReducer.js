@@ -51,7 +51,7 @@ let initialState = {
 
 
 const BillReducer = (state = initialState, action) => {
-console.log("payload", action.payload);
+console.log("payload", action.payload, state);
 const {
   payload
 } = action;
@@ -59,7 +59,7 @@ const {
     case ACTION_TYPES.ADD_BILL:
       return {
         ...state,
-        billData: state.billData.push(payload),
+        billData: [...state.billData, payload],
       };
     case ACTION_TYPES.EDIT_BILL:
       return {
