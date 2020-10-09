@@ -22,14 +22,14 @@ export default ({ type, data, toggleModal, addBill, editBill}) => {
       const bill = { 
           ...state,
           id: uuid.v4(),
-          date: moment(new Date()).format('DD-MM-YYYY')
+          date: moment(new Date()).format('MM-DD-YYYY')
       };
       addBill(bill);
     }
    else{
         const bill = { 
           ...state,
-          date: moment(new Date()).format('DD-MM-YYYY')
+          date: moment(new Date()).format('MM-DD-YYYY')
       };
       editBill(bill);
     }
