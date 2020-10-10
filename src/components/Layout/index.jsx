@@ -1,17 +1,13 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 // import { connect } from 'react-redux'
 
-const index = ({children}) => {
-  return (
-    <div>
-      {children}
-    </div>
-  )
-}
+const index = ({ children }) => {
+  return <div>{children}</div>;
+};
 
 index.propTypes = {
   prop: PropTypes
-}
+};
 
-export default (index)
+export default index;

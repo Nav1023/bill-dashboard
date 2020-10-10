@@ -5,8 +5,10 @@ function index({ children, isOpen, toggleModal }) {
   return isOpen ? (
     <div className="modal">
       <div className="modal-content">
-      {children}
-      <button className="close-btn" onClick={toggleModal}>&times;</button>
+        {children}
+        <button className="close-btn" onClick={toggleModal}>
+          &times;
+        </button>
       </div>
     </div>
   ) : null;

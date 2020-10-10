@@ -1,9 +1,9 @@
-import React from 'react'
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import MonthlyChart from '../MonthlyChart';
-import BillList from '../BillList';
-import 'react-tabs/style/react-tabs.css';
-import MinimumBills from '../MinimumBills';
+import React from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import MonthlyChart from "../MonthlyChart";
+import BillList from "../BillList";
+import "react-tabs/style/react-tabs.css";
+import MinimumBills from "../MinimumBills";
 
 function Dashboard() {
   return (
@@ -13,18 +13,18 @@ function Dashboard() {
         <Tab>Monthly Bill Graph</Tab>
         <Tab>Minimum Bills </Tab>
       </TabList>
-  
+
       <TabPanel>
-        <BillList/>
+        <BillList />
       </TabPanel>
       <TabPanel>
-        <MonthlyChart/>
+        <MonthlyChart />
       </TabPanel>
       <TabPanel>
-       <MinimumBills/>
+        <MinimumBills />
       </TabPanel>
-  </Tabs>
-  )
+    </Tabs>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

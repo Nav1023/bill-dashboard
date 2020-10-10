@@ -27,25 +27,44 @@ const MinimumBills = props => {
   }
   return (
     <div className="bill-list-wrapper">
-      <p className="heading">Your Bills</p>
+      <p className="heading">Minimum Bills</p>
       <div className="bill-list-header">
         <div>
           <input
-            onChange={e => { setMonthlyBudget(e.target.value); setShowMinBill(false)}}
+            onChange={e => {
+              setMonthlyBudget(e.target.value);
+              setShowMinBill(false);
+            }}
             name="budget"
             className="input-field"
             type="text"
-            value = {monthlyBudget}
+            value={monthlyBudget}
             placeholder="Enter Budget"
           />
-          <button onClick={() => setShowMinBill(true)}>Set</button>
+          <button className="set-btn" onClick={() => setShowMinBill(true)}>
+            Set
+          </button>
         </div>
-        <button onClick={() => {setShowMinBill(false); setMonthlyBudget(0)}}>Reset</button>
+        <button
+          className="reset-btn"
+          onClick={() => {
+            setShowMinBill(false);
+            setMonthlyBudget(0);
+          }}
+        >
+          Reset
+        </button>
       </div>
 
       <div className="bill-list-container">
         {billData.length > 0 ? (
-          billList.map(bill => <BillCard data={bill} showCardActions={false} />)
+          billList.length > 0 ? (
+            billList.map(bill => (
+              <BillCard data={bill} showCardActions={false} />
+            ))
+          ) : (
+            <p>No Minimum Bills</p>
+          )
         ) : (
           <p>No Bills</p>
         )}

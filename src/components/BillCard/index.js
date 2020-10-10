@@ -22,10 +22,10 @@ function index({ data, handleEdit, handlePos, handleDelete, showCardActions = tr
       </div>
       <p className="bill-description">Description: {description}</p>
       <p className="bill-date">Date: {date}</p>
-     { showCardActions ? <div className="btn-row">
+      {showCardActions ? <div className="btn-row">
         <button className="edit-btn" onClick={onEditClick}>Edit</button>
-        <button className="delete-btn" onClick={()=> handleDelete(id)}>Delete</button>
-      </div>: null}
+        <button className="delete-btn" onClick={() => handleDelete(id)}>Delete</button>
+      </div> : null}
     </div>
   )
 }

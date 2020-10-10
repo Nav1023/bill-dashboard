@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import { config } from './highChart'
-import {connect } from 'react-redux';
-const ReactHighcharts = require('react-highcharts');
+import React, { useEffect, useState } from "react";
+import { config } from "./highChart";
+import { connect } from "react-redux";
+const ReactHighcharts = require("react-highcharts");
 
 const monthName = {
   1: "Jan",
@@ -15,19 +15,23 @@ const monthName = {
   9: "Sept",
   10: "Oct",
   11: "Nov",
-  12: "Dec",
-}
+  12: "Dec"
+};
 
-function MonthlyChart({billData}) {
-
+function MonthlyChart({ billData }) {
   let yearlyData = {};
 
-  billData.map( (bill) => {
+  billData.map(bill => {
     yearlyData = {
-      ...yearlyData, 
-      [bill.date.substring(6,10)] :  { 
-        ...(yearlyData?.[bill.date.substring(6,10)] || {}),
-        [Number(bill.date.substring(0,2))]: Number(yearlyData?.[bill.date.substring(6,10)]?.[Number(bill.date.substring(0,2))] || 0) + Number(bill.amount)
+      ...yearlyData,
+      [bill.date.substring(6, 10)]: {
+        ...(yearlyData?.[bill.date.substring(6, 10)] || {}),
+        [Number(bill.date.substring(0, 2))]:
+          Number(
+            yearlyData?.[bill.date.substring(6, 10)]?.[
+              Number(bill.date.substring(0, 2))
+            ] || 0
+          ) + Number(bill.amount)
       }
     };
   });
@@ -36,28 +40,30 @@ function MonthlyChart({billData}) {
     ...config,
     series: [
       {
-      ...config.series[0],
-      data: (Object.keys(yearlyData)).map((year) => {
-        return Object.keys(yearlyData[year]).map( (month) => {
-          return {
-            name: `${monthName[month]} ${year}`,
-            y: yearlyData[year][month]
-          }
-        })
-      }).flat(1)
-    }
+        ...config.series[0],
+        data: Object.keys(yearlyData)
+          .map(year => {
+            return Object.keys(yearlyData[year]).map(month => {
+              return {
+                name: `${monthName[month]} ${year}`,
+                y: yearlyData[year][month]
+              };
+            });
+          })
+          .flat(1)
+      }
     ]
-  }
+  };
 
   console.log("yearlyData", configData.series);
-  
+
   return (
     <div>
-       <div className="chart-container">
-            <ReactHighcharts config={configData}></ReactHighcharts>
-        </div>
+      <div className="chart-container">
+        <ReactHighcharts config={configData}></ReactHighcharts>
+      </div>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = state => {

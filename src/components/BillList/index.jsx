@@ -49,39 +49,35 @@ const BillList = props => {
 
   let billList = [...billData];
   //if Filter is On
-  if (filterCategory !== "none"){
-    billList =  billData 
-    .filter(bill => {
-        if (bill.category === filterCategory) {
-          return bill;
-        }
+  if (filterCategory !== "none") {
+    billList = billData.filter(bill => {
+      if (bill.category === filterCategory) {
+        return bill;
+      }
     });
-  } else if(monthlyBudget) {
-    billList.sort( (firstBill, secondBill) => {
+  } else if (monthlyBudget) {
+    billList.sort((firstBill, secondBill) => {
       const x = Number(firstBill.amount);
-      const y =  Number(secondBill.amount);  
-      return ((x > y) ? -1 : ((x < y) ? 1 : 0)); 
+      const y = Number(secondBill.amount);
+      return x > y ? -1 : x < y ? 1 : 0;
     });
     let currentBillAmount = 0;
-    billList = billList.filter((bill) => {
-        if((currentBillAmount + Number(bill.amount)) <= monthlyBudget ){
-          currentBillAmount += Number(bill.amount);
-          console.log(currentBillAmount);
-          return bill;
-        }
-    })
+    billList = billList.filter(bill => {
+      if (currentBillAmount + Number(bill.amount) <= monthlyBudget) {
+        currentBillAmount += Number(bill.amount);
+        console.log(currentBillAmount);
+        return bill;
+      }
+    });
     console.log(billList);
   }
   return (
     <div className="bill-list-wrapper">
       <p className="heading">Your Bills</p>
       <div className="bill-list-header">
-          <button
-            className="add-btn"
-            onClick={toggleModal("isBillModalVisible")}
-          >
-            Add Bill
-          </button>
+        <button className="add-btn" onClick={toggleModal("isBillModalVisible")}>
+          Add Bill
+        </button>
         <div>
           <select onChange={setFilter}>
             {categoryList.map(category => (
@@ -93,29 +89,29 @@ const BillList = props => {
 
       <div className="bill-list-container">
         {billData.length > 0 ? (
-            billList.map(bill => (
-              <BillCard
-                data={bill}
-                handlePos={handleSelectedRow}
-                handleDelete={props.deleteBill}
-                handleEdit={handleEdit}
-              />
-            ))
+          billList.map(bill => (
+            <BillCard
+              data={bill}
+              handlePos={handleSelectedRow}
+              handleDelete={props.deleteBill}
+              handleEdit={handleEdit}
+            />
+          ))
         ) : (
           <p>No Bills</p>
         )}
       </div>
       <Modal
         isOpen={isBillModalVisible}
-        toggleModal={toggleModal('isBillModalVisible')}
+        toggleModal={toggleModal("isBillModalVisible")}
       >
-          <BillForm
-            type={modalType}
-            data={selectedRow}
-            toggleModal={toggleModal("isBillModalVisible")}
-            addBill={props.addBill}
-            editBill={props.editBill}
-          />
+        <BillForm
+          type={modalType}
+          data={selectedRow}
+          toggleModal={toggleModal("isBillModalVisible")}
+          addBill={props.addBill}
+          editBill={props.editBill}
+        />
       </Modal>
     </div>
   );
