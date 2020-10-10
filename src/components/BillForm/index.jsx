@@ -13,7 +13,6 @@ export default ({ type, data, toggleModal, addBill, editBill }) => {
   const [amountError, setAmountError] = useState(false);
   const [categoryError, setCategoryError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
-  const [isError, setIsError] = useState(false);
   const handleChange = event => {
     event.persist();
     setstate(prevState => ({
@@ -25,43 +24,41 @@ export default ({ type, data, toggleModal, addBill, editBill }) => {
   const validateForm = formData => {
     if (!formData.amount) {
       setAmountError(true);
-      setIsError(true);
     } else if (!formData.category) {
       setAmountError(false);
       setCategoryError(true);
       setDescriptionError(false);
-      setIsError(true);
     } else if (!formData.description) {
       setAmountError(false);
       setCategoryError(false);
       setDescriptionError(true);
-      setIsError(true);
     } else {
       setAmountError(false);
       setCategoryError(false);
       setDescriptionError(false);
-      setIsError(false);
+      return true;
     }
   };
   const handleBillSubmit = event => {
     event.preventDefault();
-    validateForm(state);
-
-    if (type === "create" && isError !== false) {
-      const bill = {
-        ...state,
-        id: uuid.v4(),
-        date: moment(new Date()).format("MM-DD-YYYY")
-      };
-      addBill(bill);
-      toggleModal();
-    } else if (type === "edit" && isError !== true) {
-      const bill = {
-        ...state,
-        date: moment(new Date()).format("MM-DD-YYYY")
-      };
-      editBill(bill);
-      toggleModal();
+    const isValid = validateForm(state);
+    if (isValid) {
+      if (type === "create") {
+        const bill = {
+          ...state,
+          id: uuid.v4(),
+          date: moment(new Date()).format("MM-DD-YYYY")
+        };
+        addBill(bill);
+        toggleModal();
+      } else if (type === "edit") {
+        const bill = {
+          ...state,
+          date: moment(new Date()).format("MM-DD-YYYY")
+        };
+        editBill(bill);
+        toggleModal();
+      }
     }
   };
 
