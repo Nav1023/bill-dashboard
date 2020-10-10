@@ -17,7 +17,6 @@ export const editBill = (body)=> (dispatch) =>{
 }
 
 export  const deleteBill = (id)=> (dispatch) =>{
-    console.log('checkbody', id);
     dispatch({
         type: ACTION_TYPES.DELETE_BILL,
         payload : id

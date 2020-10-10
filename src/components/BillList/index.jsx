@@ -21,9 +21,6 @@ const BillList = props => {
     .filter((x, i, a) => a.indexOf(x) === i);
   categoryList.unshift("none");
 
-  console.log("categoryList", categoryList);
-  console.log("props", props);
-
   const toggleModal = fieldName => () => {
     if (fieldName === "isBillModalVisible") {
       setisBillModalVisible(!isBillModalVisible);
@@ -38,7 +35,6 @@ const BillList = props => {
   };
 
   const setFilter = option => {
-    console.log("option", option.target.value);
     setFilterCategory(option.target.value);
   };
 
@@ -65,11 +61,9 @@ const BillList = props => {
     billList = billList.filter(bill => {
       if (currentBillAmount + Number(bill.amount) <= monthlyBudget) {
         currentBillAmount += Number(bill.amount);
-        console.log(currentBillAmount);
         return bill;
       }
     });
-    console.log(billList);
   }
   return (
     <div className="bill-list-wrapper">

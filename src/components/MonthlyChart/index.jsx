@@ -55,8 +55,6 @@ function MonthlyChart({ billData }) {
     ]
   };
 
-  console.log("yearlyData", configData.series);
-
   return (
     <div>
       <div className="chart-container">

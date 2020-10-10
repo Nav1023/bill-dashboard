@@ -51,7 +51,6 @@ let initialState = {
 
 
 const BillReducer = (state = initialState, action) => {
-console.log("payload", action.payload, state);
 const {
   payload
 } = action;

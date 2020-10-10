@@ -14,7 +14,6 @@ export default ({ type, data, toggleModal, addBill, editBill }) => {
   const [categoryError, setCategoryError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const [isError, setIsError] = useState(false);
-  console.log("data", data);
   const handleChange = event => {
     event.persist();
     setstate(prevState => ({
@@ -24,7 +23,6 @@ export default ({ type, data, toggleModal, addBill, editBill }) => {
   };
 
   const validateForm = formData => {
-    console.log("formData", formData);
     if (!formData.amount) {
       setAmountError(true);
       setIsError(true);
@@ -47,9 +45,7 @@ export default ({ type, data, toggleModal, addBill, editBill }) => {
   };
   const handleBillSubmit = event => {
     event.preventDefault();
-    console.log("state", state);
     validateForm(state);
-    console.log("error", isError);
 
     if (type === "create" && isError !== false) {
       const bill = {
